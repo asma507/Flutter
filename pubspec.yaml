@@ -1,0 +1,64 @@
+name: lyrics_viewer_app
+description: A modern lyrics viewer app with synced playback and beautiful animations.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+    
+  
+  # Audio playback
+  just_audio: ^0.9.33
+  audio_session: ^0.1.16
+  
+  # UI & Animations
+  cupertino_icons: ^1.0.6
+  flutter_staggered_animations: ^1.1.1
+  animated_text_kit: ^4.2.2
+  shimmer: ^3.0.0
+  
+  # State management
+  provider: ^6.0.5
+  
+  # Storage
+  shared_preferences: ^2.2.2
+  path_provider: ^2.1.1
+  
+  # Image handling
+  palette_generator: ^0.3.3
+  cached_network_image: ^3.3.0
+  
+  # Utils
+  rxdart: ^0.27.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  
+  # Add sample assets
+  assets:
+    - assets/images/
+    - assets/audio/demo.mp3
+    - assets/lyrics/
+    
+  
+    
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
