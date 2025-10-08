@@ -1,78 +1,125 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:lyrics_viewer_app/models/song.dart';
+import '../models/song.dart';
 
-class AudioProvider with ChangeNotifier {
-  final AudioPlayer _audioPlayer = AudioPlayer();
+class AudioProvider extends ChangeNotifier {
+  final AudioPlayer _player = AudioPlayer();
+
   Song? _currentSong;
+  List<Song> _playlist = [];
   bool _isPlaying = false;
-  Duration _position = Duration.zero;
   Duration _duration = Duration.zero;
-
-  // Getters for accessing the state from other widgets
-  Song? get currentSong => _currentSong;
-  bool get isPlaying => _isPlaying;
-  Duration get position => _position;
-  Duration get duration => _duration;
+  Duration _position = Duration.zero;
 
   AudioProvider() {
-    _initListeners();
+    _initializeListeners();
   }
 
-  void _initListeners() {
-    // Listen to changes in the player's state (playing, paused, stopped)
-    _audioPlayer.playerStateStream.listen((playerState) {
-      _isPlaying = playerState.playing;
+  // Getters
+  Song? get currentSong => _currentSong;
+  bool get isPlaying => _isPlaying;
+  Duration get duration => _duration;
+  Duration get position => _position;
+  List<Song> get playlist => _playlist;
+
+  Duration get totalDuration => _duration;
+  Duration get currentPosition => _position;
+
+  // Initialize listeners
+  void _initializeListeners() {
+    _player.durationStream.listen((d) {
+      if (d != null) {
+        _duration = d;
+        notifyListeners();
+      }
+    });
+
+    _player.positionStream.listen((p) {
+      _position = p;
       notifyListeners();
     });
 
-    // Listen to changes in the playback position
-    _audioPlayer.positionStream.listen((newPosition) {
-      _position = newPosition;
+    _player.playerStateStream.listen((state) {
+      _isPlaying = state.playing;
       notifyListeners();
-    });
 
-    // Listen to changes in the song's duration
-    _audioPlayer.durationStream.listen((newDuration) {
-      _duration = newDuration ?? Duration.zero;
-      notifyListeners();
+      if (state.processingState == ProcessingState.completed) {
+        playNext();
+      }
     });
   }
 
-  // Method to play a new song
-  Future<void> play(Song song) async {
-    _currentSong = song;
-    _position = Duration.zero;
-    _duration = Duration.zero;
-    notifyListeners();
-    try {
-      await _audioPlayer.setAsset(song.lyricsAssetPath
-          .replaceAll('lyrics', 'audio')
-          .replaceAll('.lrc', '.mp3'));
-      _audioPlayer.play();
-    } catch (e) {
-      debugPrint("Error loading audio: $e");
+  // Playlist setup
+  Future<void> setPlaylist(List<Song> songs, {Song? startSong}) async {
+    _playlist = songs;
+    if (startSong != null) {
+      await playSong(startSong);
+    } else if (songs.isNotEmpty) {
+      await playSong(songs.first);
     }
   }
 
-  // Method to pause the current song
-  void pause() {
-    _audioPlayer.pause();
+  // Play a specific song
+  Future<void> playSong(Song song) async {
+    if (_currentSong == song && _isPlaying) return;
+
+    _currentSong = song;
+    try {
+      await _player.setAsset(song.audioPath);
+      await _player.play();
+    } catch (e) {
+      debugPrint("Error playing song: $e");
+    }
+    notifyListeners();
   }
 
-  // Method to resume the paused song
-  void resume() {
-    _audioPlayer.play();
+  // Toggle play/pause
+  Future<void> togglePlayPause() async {
+    try {
+      if (_isPlaying) {
+        await _player.pause();
+      } else {
+        await _player.play();
+      }
+    } catch (e) {
+      debugPrint("Error toggling play/pause: $e");
+    }
   }
 
-  // Method to seek to a specific position
-  void seek(Duration position) {
-    _audioPlayer.seek(position);
+  // Stop playback
+  Future<void> stop() async {
+    await _player.stop();
+    _isPlaying = false;
+    notifyListeners();
+  }
+
+  // Seek to a position
+  Future<void> seek(Duration position) async {
+    await _player.seek(position);
+    notifyListeners();
+  }
+
+  // Play next song
+  Future<void> playNext() async {
+    if (_playlist.isEmpty || _currentSong == null) return;
+
+    final currentIndex = _playlist.indexOf(_currentSong!);
+    final nextIndex = (currentIndex + 1) % _playlist.length;
+    await playSong(_playlist[nextIndex]);
+  }
+
+  // Play previous song
+  Future<void> playPrevious() async {
+    if (_playlist.isEmpty || _currentSong == null) return;
+
+    final currentIndex = _playlist.indexOf(_currentSong!);
+    final prevIndex = (currentIndex - 1 + _playlist.length) % _playlist.length;
+    await playSong(_playlist[prevIndex]);
   }
 
   @override
   void dispose() {
-    _audioPlayer.dispose();
+    _player.dispose();
     super.dispose();
   }
 }

@@ -10,7 +10,7 @@ void main() {
     await tester.pumpWidget(const MyApp());
 
     // Verify that the "JioSaavn" title is present on the AppBar.
-    expect(find.text('JioSaavn'), findsOneWidget);
+    expect(find.text('MERAgana'), findsOneWidget);
 
     // Verify that the "Trending Now" section title is on the screen.
     expect(find.text('Trending Now'), findsOneWidget);

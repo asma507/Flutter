@@ -1,86 +1,193 @@
 import 'package:flutter/material.dart';
 import 'package:lyrics_viewer_app/models/song.dart';
 import 'package:lyrics_viewer_app/screens/album_screen.dart';
+import 'package:lyrics_viewer_app/screens/login_screen.dart';
 import 'package:lyrics_viewer_app/widgets/mini_player.dart';
 
-// Example album data
+// ✅ Trending data
 final List<Map<String, dynamic>> trendingData = [
   {
     'imageUrl':
-        'https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/saiyaara-et00447951-1752737895.jpg',
+        'https://assets-in.bmscdn.com/discovery-catalog/events/et00447951-dczetyvwpe-landscape.jpg',
     'title': 'Saiyaara',
-    'subtitle': 'Fheem',
+    'subtitle': 'fheem',
+    'language': 'Hindi',
     'songs': [
       {
         'title': 'Saiyaara (Title Track)',
         'artist': 'Mohit Chauhan',
         'imageUrl':
-            'https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/saiyaara-et00447951-1752737895.jpg',
-        'duration': '03:50'
+            'https://glamsham.com/wp-content/uploads/2025/07/Saiyaara-Review_pic-courtesy-Youtube.jpg',
+        'duration': '6:10',
+        'lyricsAssetPath': 'assets/lyrics/saiyaara.lrc',
+        'audioAssetPath': 'assets/audio/saiyaara.mp3',
       },
       {
         'title': 'Humsafar',
         'artist': 'Mohit Chauhan',
-        'imageUrl':
-            'https://i.ytimg.com/vi/BEHoMqlpYr8/oar2.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLC4JrW1wNFGFIbvYgbTsq8u5rnTZw',
-        'duration': '03:50'
+        'imageUrl': 'https://i.ytimg.com/vi/BEHoMqlpYr8/oar2.jpg',
+        'duration': '5:22',
+        'lyricsAssetPath': 'assets/lyrics/humsafar.lrc',
+        'audioAssetPath': 'assets/audio/humsafar.mp3',
       },
       {
         'title': 'Tum Ho Tho',
         'artist': 'Mohit Chauhan',
         'imageUrl':
-            'https://c.ndtvimg.com/2025-07/9ln27jac_saiyaara_625x300_27_July_25.jpg?im=FeatureCrop,algorithm=dnn,width=1200,height=738',
-        'duration': '03:50'
-      },
-      {
-        'title': 'Tum Hi Ho',
-        'artist': 'Arijit Singh',
-        'imageUrl':
-            'https://staticimg.amarujala.com/assets/images/2025/06/24/sayara_4f8edf95d4afeae4b25f1afc30304933.jpeg',
-        'duration': '04:20'
-      },
-      {
-        'title': 'Dhun',
-        'artist': 'Arijit Singh',
-        'imageUrl':
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLVDKofpNWIBXZMFjKO95JEIwUFmj3patuRksiuxpuam4aKXOjyTz4KwHnBnaICYuw3g4&usqp=CAU',
-        'duration': '04:20'
+            'https://i.cdn.newsbytesapp.com/images/l96920250617143214.jpeg',
+        'duration': '5:18',
+        'lyricsAssetPath': 'assets/lyrics/tum_ho_tho.lrc',
+        'audioAssetPath': 'assets/audio/tum_ho_tho.mp3',
       },
     ],
   },
   {
     'imageUrl':
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZFqQV5YCzMLCR2B2kDZsI7Dh0Iv3xJFEobHl5XAmKiN1X8tifiR3nkDtlcvFsFEDgfjg&usqp=CAU',
-    'title': 'Deewaniyat',
-    'subtitle': 'Vishal Mishra',
+        'https://cdn.gulte.com/wp-content/uploads/2023/12/Hi-Nanna-Movie-Review.jpg',
+    'title': 'Hi Nanna',
+    'subtitle': 'Hashem Abdul Wahab',
+    'language': 'Telugu',
     'songs': [
       {
-        'title': 'Deewaniyat',
-        'artist': 'Vishal Mishra',
-        'imageUrl': 'https://i.ibb.co/hKzV75j/trending2.png',
-        'duration': '03:40'
+        'title': 'Na GaajuBomma',
+        'artist': 'Nani',
+        'imageUrl':
+            'https://cdn.gulte.com/wp-content/uploads/2023/12/Hi-Nanna-Movie-Review.jpg',
+        'duration': '03:40',
+        'lyricsAssetPath': 'assets/lyrics/na_gaajubomma.lrc',
+        'audioAssetPath': 'assets/audio/na_gaajubomma.mp3',
+      },
+      {
+        'title': 'Enno Enno',
+        'artist': 'Nani',
+        'imageUrl':
+            'https://english.idreampost.com/wp-content/uploads/2023/12/hi-nanna-review.jpg',
+        'duration': '03:50',
+        'lyricsAssetPath': 'assets/lyrics/enno_enno.lrc',
+        'audioAssetPath': 'assets/audio/enno_enno.mp3',
+      },
+    ],
+  },
+  {
+    'imageUrl':
+        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRx0wTDoneV8OuMM6hNfD7vfibB_jt6FcCL-u8H2DljlRXgGCoG',
+    'title': 'RRR',
+    'subtitle': 'Rahul Sipligunj',
+    'language': 'Telugu',
+    'songs': [
+      {
+        'title': 'Uyire',
+        'artist': 'NTR & Ramcharan',
+        'imageUrl':
+            'https://cdn.gulte.com/wp-content/uploads/2023/12/Hi-Nanna-Movie-Review.jpg',
+        'duration': '03:40',
+        'lyricsAssetPath': 'assets/lyrics/uyire.lrc',
+        'audioAssetPath': 'assets/audio/uyire.mp3',
+      },
+      {
+        'title': 'Nattu Koothu',
+        'artist': 'NTR & Ram charan',
+        'imageUrl':
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQex5EK_c4P0vum1dMJdOrwqhVHt59e4IxbIw8WtgZwtE9pwYTqMSOZ94ugBzMRBY3_0Ak&usqp=CAU',
+        'duration': '03:50',
+        'lyricsAssetPath': 'assets/lyrics/nattu koothu.lrc',
+        'audioAssetPath': 'assets/audio/nattu koothu.mp3',
+      },
+      {
+        'title': 'Komma Uyyala',
+        'artist': 'NTR & Ram charan',
+        'imageUrl':
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ83Z_JqECrMycUJQwSBz3hmQLCEcVaNuI41zlDrU_exrL4CG4LareT248gLF8HcRtzvC4&usqp=CAU',
+        'duration': '03:50',
+        'lyricsAssetPath': 'assets/lyrics/komma uyyala.lrc',
+        'audioAssetPath': 'assets/audio/komma uyyala.mp3',
+      },
+    ],
+  },
+  {
+    'imageUrl':
+        'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p11546593_p_v8_af.jpg',
+    'title': 'Baahubali',
+    'subtitle': 'M.M.Keeravani',
+    'language': 'Telugu',
+    'songs': [
+      {
+        'title': 'Dheevara',
+        'artist': 'Prabhas',
+        'imageUrl':
+            'https://akm-img-a-in.tosshub.com/businesstoday/images/story/201507/baahubali-660_071315015253.jpg',
+        'duration': '03:40',
+        'lyricsAssetPath': 'assets/lyrics/dheevara.lrc',
+        'audioAssetPath': 'assets/audio/dheevara.mp3',
+      },
+      {
+        'title': 'Paccha Bottasi',
+        'artist': 'Prabhas',
+        'imageUrl':
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6tZqxY3c1b-1QhI6m1w5q0SCbEt26_3zxtrKi3pi2tJfsElidfU63kYu1_yEecPtsQzw&usqp=CAU',
+        'duration': '03:50',
+        'lyricsAssetPath': 'assets/lyrics/paccha bottasi.lrc',
+        'audioAssetPath': 'assets/audio/paccha bottasi.mp3',
+      },
+      {
+        'title': 'Manohari',
+        'artist': 'Prabhas',
+        'imageUrl':
+            'https://preview.redd.it/do-you-want-manohari-song-in-baahubali-the-epic-v0-hvomi88x3wlf1.png?width=640&crop=smart&auto=webp&s=638458deeee77938706098a400e44574f5766e1a',
+        'duration': '03:50',
+        'lyricsAssetPath': 'assets/lyrics/manohari.lrc',
+        'audioAssetPath': 'assets/audio/manohari.mp3',
       },
     ],
   },
 ];
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String _selectedLanguage = 'All';
+  int _currentTabIndex = 0;
+  bool _isSearching = false;
+  String _searchQuery = '';
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Filter by language
+    List<Map<String, dynamic>> filteredAlbums = _selectedLanguage == 'All'
+        ? trendingData
+        : trendingData
+            .where((album) => album['language'] == _selectedLanguage)
+            .toList();
+
+    // Apply search filter
+    if (_searchQuery.isNotEmpty) {
+      filteredAlbums = filteredAlbums.where((album) {
+        final title = album['title'].toString().toLowerCase();
+        final subtitle = album['subtitle'].toString().toLowerCase();
+        return title.contains(_searchQuery.toLowerCase()) ||
+            subtitle.contains(_searchQuery.toLowerCase());
+      }).toList();
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFF0F0F0),
         leading: const Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
-            'MeraGana ',
+            'MeraGana',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -90,146 +197,160 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         leadingWidth: 100,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: TextButton.icon(
-              onPressed: () {},
-              icon: const Text(
-                'Languages',
-                style: TextStyle(color: Colors.black, fontSize: 14),
+          // Language Dropdown
+          if (!_isSearching)
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: DropdownButton<String>(
+                value: _selectedLanguage,
+                underline: const SizedBox(),
+                icon: const Icon(Icons.arrow_drop_down, color: Colors.black),
+                items: <String>['All', 'Telugu', 'Hindi', 'English']
+                    .map((lang) => DropdownMenuItem(
+                          value: lang,
+                          child: Text(lang,
+                              style: const TextStyle(color: Colors.black)),
+                        ))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedLanguage = value!;
+                  });
+                },
               ),
-              label: const Icon(Icons.arrow_drop_down, color: Colors.black),
             ),
+
+          // Search Field
+          if (_isSearching)
+            SizedBox(
+              width: 200,
+              child: TextField(
+                controller: _searchController,
+                autofocus: true,
+                decoration: const InputDecoration(
+                  hintText: 'Search...',
+                  border: InputBorder.none,
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _searchQuery = value;
+                  });
+                },
+              ),
+            ),
+          IconButton(
+            icon: Icon(_isSearching ? Icons.close : Icons.search,
+                color: Colors.black),
+            onPressed: () {
+              setState(() {
+                if (_isSearching) {
+                  _searchQuery = '';
+                  _searchController.clear();
+                }
+                _isSearching = !_isSearching;
+              });
+            },
           ),
         ],
       ),
       body: Stack(
         children: [
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 8.0),
-                  child: Text(
-                    'Trending Now',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 70),
+            child: GridView.builder(
+              padding: const EdgeInsets.all(16.0),
+              itemCount: filteredAlbums.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 0.65,
+              ),
+              itemBuilder: (context, index) {
+                final album = filteredAlbums[index];
+                final List<Song> songs = (album['songs'] as List)
+                    .map((s) => Song(
+                          title: s['title'],
+                          artist: s['artist'],
+                          imagePath: s['imageUrl'],
+                          audioPath: s['audioAssetPath'],
+                          lyricsPath: s['lyricsAssetPath'],
+                        ))
+                    .toList();
+
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => AlbumScreen(
+                          albumName: album['title'],
+                          albumCover: album['imageUrl'],
+                          songs: songs,
                         ),
+                      ),
+                    );
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
+                          album['imageUrl'],
+                          height: 120,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        album['title'],
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        album['subtitle'],
+                        style: const TextStyle(color: Colors.grey),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
-                ),
-                _buildHorizontalList(trendingData),
-                const SizedBox(height: 20),
-                _buildHorizontalList(trendingData),
-              ],
+                );
+              },
             ),
           ),
-          const Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: MiniPlayer(),
-          ),
+          const Positioned(bottom: 0, left: 0, right: 0, child: MiniPlayer()),
         ],
       ),
-      bottomNavigationBar: _buildBottomNavBar(),
-    );
-  }
-
-  Widget _buildHorizontalList(List<Map<String, dynamic>> data) {
-    return SizedBox(
-      height: 200,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          final album = data[index];
-          return GestureDetector(
-            onTap: () {
-              final List<Song> songs = (album['songs'] as List)
-                  .map((s) => Song(
-                        title: s['title'],
-                        artist: s['artist'],
-                        imageUrl: s['imageUrl'],
-                        album: album['title'],
-                        playCount: 123456,
-                        lyricsAssetPath: 'assets/lyrics/demo.lrc',
-                      ))
-                  .toList();
-
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        currentIndex: _currentTabIndex,
+        onTap: (index) {
+          setState(() {
+            _currentTabIndex = index;
+            if (index == 2) {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => AlbumScreen(
-                    albumName: album['title'],
-                    albumCover: album['imageUrl'],
-                    songs: songs,
-                  ),
-                ),
+                MaterialPageRoute(builder: (_) => const LoginScreen()),
               );
-            },
-            child: Container(
-              width: 150,
-              margin: const EdgeInsets.only(left: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      album['imageUrl'],
-                      fit: BoxFit.cover,
-                      height: 120,
-                      width: 150,
-                    ),
-                  ),
-                  const SizedBox(height: 8.0),
-                  Text(
-                    album['title'],
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    album['subtitle'],
-                    style: const TextStyle(color: Colors.grey),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-          );
+            } else if (index == 1) {
+              _isSearching = true;
+            } else {
+              _isSearching = false;
+              _searchQuery = '';
+              _searchController.clear();
+            }
+          });
         },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Login'),
+        ],
       ),
-    );
-  }
-
-  Widget _buildBottomNavBar() {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.white,
-      selectedItemColor: Colors.black,
-      unselectedItemColor: Colors.grey,
-      showSelectedLabels: true,
-      showUnselectedLabels: true,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Search',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.explore),
-          label: 'Browse',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Login',
-        ),
-      ],
     );
   }
 }

@@ -14,10 +14,10 @@ class LyricsView extends StatefulWidget {
   final Duration currentTime;
 
   const LyricsView({
-    Key? key,
+    super.key,
     required this.lyrics,
     required this.currentTime,
-  }) : super(key: key);
+  });
 
   @override
   _LyricsViewState createState() => _LyricsViewState();

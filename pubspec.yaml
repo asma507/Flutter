@@ -1,6 +1,7 @@
 name: lyrics_viewer_app
 description: A modern lyrics viewer app with synced playback and beautiful animations.
 publish_to: 'none'
+
 version: 1.0.0+1
 
 environment:
@@ -10,48 +11,50 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
-  
-  # Audio playback
-  just_audio: ^0.9.33
+
+  # 🎵 Audio playback
+  just_audio: ^0.9.36
   audio_session: ^0.1.16
-  
-  # UI & Animations
+
+  # 🧠 State management
+  provider: ^6.1.2
+
+  # 💾 Storage
+  shared_preferences: ^2.3.2
+  path_provider: ^2.1.3
+
+  # 🎨 UI & Animations
   cupertino_icons: ^1.0.6
   flutter_staggered_animations: ^1.1.1
   animated_text_kit: ^4.2.2
   shimmer: ^3.0.0
-  
-  # State management
-  provider: ^6.0.5
-  
-  # Storage
-  shared_preferences: ^2.2.2
-  path_provider: ^2.1.1
-  
-  # Image handling
-  palette_generator: ^0.3.3
-  cached_network_image: ^3.3.0
-  
-  # Utils
+
+  # 🖼️ Image & Color Utilities
+  cached_network_image: ^3.4.0
+  palette_generator: ^0.3.3+7  # ✅ Updated to latest available version
+
+  # ⚙️ Reactive Streams
   rxdart: ^0.27.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^3.0.2
 
 flutter:
   uses-material-design: true
-  
-  # Add sample assets
+
   assets:
-    - assets/images/
-    - assets/audio/demo.mp3
+    # Audio files
+    - assets/audio/
+    - assets/songs/
+
+    # Lyrics files
     - assets/lyrics/
-    
-  
-    
+
+    # Images
+    - assets/images/
+
   fonts:
     - family: Poppins
       fonts:
@@ -61,4 +64,4 @@ flutter:
         - asset: assets/fonts/Poppins-SemiBold.ttf
           weight: 600
         - asset: assets/fonts/Poppins-Bold.ttf
-          weight: 700
+          weight: 700  # ✅ Correctly commented

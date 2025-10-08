@@ -20,7 +20,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         onChanged: (val) {
           setState(() => isDarkMode = val);
         },
-        activeColor: Theme.of(context).primaryColor, // ✅ safe here
+        activeThumbColor: Theme.of(context).primaryColor, // ✅ safe here
       ),
     );
   }

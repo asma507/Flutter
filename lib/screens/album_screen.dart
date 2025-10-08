@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lyrics_viewer_app/models/song.dart';
 import 'package:lyrics_viewer_app/screens/player_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:lyrics_viewer_app/providers/audio_provider.dart';
 
 class AlbumScreen extends StatelessWidget {
   final String albumName;
@@ -8,14 +10,16 @@ class AlbumScreen extends StatelessWidget {
   final List<Song> songs;
 
   const AlbumScreen({
-    Key? key,
+    super.key,
     required this.albumName,
     required this.albumCover,
     required this.songs,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
+    final audioProvider = context.read<AudioProvider>(); // ✅ get provider
+
     return Scaffold(
       appBar: AppBar(
         title: Text(albumName),
@@ -23,7 +27,7 @@ class AlbumScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Album Cover
+          // 🔹 Album Cover & Details
           Container(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -48,11 +52,16 @@ class AlbumScreen extends StatelessWidget {
                 const SizedBox(height: 8),
                 ElevatedButton.icon(
                   onPressed: () {
-                    // Play first song (example)
+                    // ✅ Play all songs starting from the first one
+                    audioProvider.setPlaylist(songs, startSong: songs.first);
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => PlayerScreen(song: songs.first),
+                        builder: (_) => PlayerScreen(
+                          song: songs.first,
+                          playlist: songs,
+                        ),
                       ),
                     );
                   },
@@ -64,14 +73,14 @@ class AlbumScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
 
           const Divider(),
 
-          // Songs List
+          // 🔹 Songs List
           Expanded(
             child: ListView.builder(
               itemCount: songs.length,
@@ -81,28 +90,36 @@ class AlbumScreen extends StatelessWidget {
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.network(
-                      song.imageUrl,
+                      song.imagePath, // ✅ fixed property name
                       width: 50,
                       height: 50,
                       fit: BoxFit.cover,
                     ),
                   ),
-                  title: Text(song.title,
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
+                  title: Text(
+                    song.title,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   subtitle: Text(song.artist),
                   trailing: const Icon(Icons.play_arrow),
                   onTap: () {
+                    // ✅ Tell audio provider to play the selected song
+                    audioProvider.setPlaylist(songs, startSong: song);
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => PlayerScreen(song: song),
+                        builder: (_) => PlayerScreen(
+                          song: song,
+                          playlist: songs,
+                        ),
                       ),
                     );
                   },
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );

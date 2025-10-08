@@ -1,35 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:lyrics_viewer_app/screens/home_screen.dart';
 import 'package:lyrics_viewer_app/providers/audio_provider.dart';
+import 'package:lyrics_viewer_app/screens/home_screen.dart';
+import 'package:audio_session/audio_session.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final session = await AudioSession.instance;
+  await session.configure(const AudioSessionConfiguration.music());
+
   runApp(
-    // The ChangeNotifierProvider makes AudioProvider available to the entire app.
-    ChangeNotifierProvider(
-      create: (context) => AudioProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AudioProvider()),
+      ],
       child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Lyrics Viewer App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
-          color: Colors.white,
-          elevation: 0,
-        ),
-      ),
-      home: const HomeScreen(),
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
+      home: HomeScreen(),
     );
   }
 }
