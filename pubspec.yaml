@@ -35,6 +35,7 @@ dependencies:
 
   # ⚙️ Reactive Streams
   rxdart: ^0.27.7
+  just_audio_platform_interface: ^4.6.0
 
 dev_dependencies:
   flutter_test:

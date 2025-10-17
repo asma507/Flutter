@@ -23,22 +23,22 @@ class Song {
       artist: 'krish kapoor',
       imagePath:
           'https://glamsham.com/wp-content/uploads/2025/07/Saiyaara-Review_pic-courtesy-Youtube.jpg',
-      audioPath: 'assets/audio/saiyaara.mp3',
-      lyricsPath: 'assets/lyrics/saiyaara.lrc',
+      audioPath: 'assets/audio/saiyara.mp3',
+      lyricsPath: 'assets/lyrics/saiyara.lrc',
     ),
     Song(
       title: 'Humsafar',
       artist: 'krish kapoor',
       imagePath: 'https://i.ytimg.com/vi/BEHoMqlpYr8/oar2.jpg',
-      audioPath: 'assets/audio/Humsafar.mp3',
-      lyricsPath: 'assets/lyrics/Humsafar.lrc',
+      audioPath: 'assets/audio/humsafar.mp3',
+      lyricsPath: 'assets/lyrics/humsafar.lrc',
     ),
     Song(
       title: 'Tum Ho Tho',
       artist: 'krish kapoor',
       imagePath: 'https://i.ytimg.com/vi/BEHoMqlpYr8/oar2.jpg',
-      audioPath: 'assets/audio/Tum Ho Tho.mp3',
-      lyricsPath: 'assets/lyrics/Tum Ho Tho.lrc',
+      audioPath: 'assets/audio/tum ho tho.mp3',
+      lyricsPath: 'assets/lyrics/tum ho tho.lrc',
     ),
   ];
 }

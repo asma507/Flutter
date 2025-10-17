@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lyrics_viewer_app/main.dart';
+import 'package:lyrics_viewer_app/screens/home_screen.dart';
+import 'package:lyrics_viewer_app/widgets/mini_player.dart';
 
 void main() {
-  testWidgets('Home screen renders with expected titles',
+  testWidgets('Home screen renders with expected widgets',
       (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    // This will render MyApp, which in turn renders the HomeScreen.
+    // Build the app and trigger a frame
     await tester.pumpWidget(const MyApp());
 
-    // Verify that the "JioSaavn" title is present on the AppBar.
-    expect(find.text('MERAgana'), findsOneWidget);
+    // Verify that the AppBar title "Music" is present
+    expect(find.text('Music'), findsOneWidget);
 
-    // Verify that the "Trending Now" section title is on the screen.
-    expect(find.text('Trending Now'), findsOneWidget);
+    // Verify that a DropdownButton (language selector) is present
+    expect(find.byType(DropdownButton<String>), findsOneWidget);
 
-    // Verify that the Languages button is also visible.
-    expect(find.text('Languages'), findsOneWidget);
+    // Verify that the GridView (albums) is present
+    expect(find.byType(GridView), findsOneWidget);
 
-    // You can also test for the presence of specific widget types.
-    // For example, this checks that a horizontal ListView is present.
-    expect(find.byType(ListView), findsWidgets);
+    // Verify that the MiniPlayer widget is present
+    expect(find.byType(MiniPlayer), findsOneWidget);
+
+    // Optionally, check for the BottomNavigationBar
+    expect(find.byType(BottomNavigationBar), findsOneWidget);
   });
 }

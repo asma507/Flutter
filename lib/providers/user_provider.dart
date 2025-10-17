@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {
-  String? _username;
+  String? _name;
+  String? _email;
 
-  bool get isLoggedIn => _username != null;
-  String get username => _username ?? '';
+  // Check if user is logged in
+  bool get isLoggedIn => _name != null && _email != null;
 
-  void login(String username) {
-    _username = username;
+  // Getters
+  String get name => _name ?? '';
+  String get email => _email ?? '';
+
+  // Login function
+  void login(String name, String email) {
+    _name = name;
+    _email = email;
     notifyListeners();
   }
 
+  // Logout function
   void logout() {
-    _username = null;
+    _name = null;
+    _email = null;
     notifyListeners();
   }
 }

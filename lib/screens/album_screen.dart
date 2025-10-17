@@ -23,7 +23,7 @@ class AlbumScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(albumName),
-        backgroundColor: Colors.purple,
+        backgroundColor: const Color.fromARGB(255, 180, 67, 200),
       ),
       body: Column(
         children: [
@@ -34,7 +34,7 @@ class AlbumScreen extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
+                  child: Image.asset(
                     albumCover,
                     height: 180,
                     width: 180,
@@ -68,7 +68,7 @@ class AlbumScreen extends StatelessWidget {
                   icon: const Icon(Icons.play_arrow),
                   label: const Text("Play All"),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple,
+                    backgroundColor: const Color.fromARGB(255, 208, 202, 209),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25),
                     ),
@@ -89,7 +89,7 @@ class AlbumScreen extends StatelessWidget {
                 return ListTile(
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
+                    child: Image.asset(
                       song.imagePath, // ✅ fixed property name
                       width: 50,
                       height: 50,

@@ -1,3 +1,4 @@
+import 'package:audio_session/audio_session.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import '../models/song.dart';
@@ -10,9 +11,20 @@ class AudioProvider extends ChangeNotifier {
   bool _isPlaying = false;
   Duration _duration = Duration.zero;
   Duration _position = Duration.zero;
+  double _volume = 1.0;
 
   AudioProvider() {
     _initializeListeners();
+
+    // Android audio attributes
+    _player.setAndroidAudioAttributes(
+      const AndroidAudioAttributes(
+        contentType: AndroidAudioContentType.music,
+        usage: AndroidAudioUsage.media,
+      ),
+    );
+
+    _player.setVolume(_volume);
   }
 
   // Getters
@@ -21,9 +33,11 @@ class AudioProvider extends ChangeNotifier {
   Duration get duration => _duration;
   Duration get position => _position;
   List<Song> get playlist => _playlist;
+  double get volume => _volume;
 
-  Duration get totalDuration => _duration;
+  // ✅ Add these for PlayerScreen
   Duration get currentPosition => _position;
+  Duration get totalDuration => _duration;
 
   // Initialize listeners
   void _initializeListeners() {
@@ -65,8 +79,11 @@ class AudioProvider extends ChangeNotifier {
 
     _currentSong = song;
     try {
+      await _player.stop();
       await _player.setAsset(song.audioPath);
+      await _player.setVolume(_volume);
       await _player.play();
+      _isPlaying = true;
     } catch (e) {
       debugPrint("Error playing song: $e");
     }
@@ -81,9 +98,11 @@ class AudioProvider extends ChangeNotifier {
       } else {
         await _player.play();
       }
+      _isPlaying = !_isPlaying;
     } catch (e) {
       debugPrint("Error toggling play/pause: $e");
     }
+    notifyListeners();
   }
 
   // Stop playback
@@ -99,10 +118,23 @@ class AudioProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Seek to a song in playlist by index
+  Future<void> seekToIndex(int index) async {
+    if (_playlist.isEmpty) return;
+    final clampedIndex = index.clamp(0, _playlist.length - 1);
+    await playSong(_playlist[clampedIndex]);
+  }
+
+  // Volume control
+  void setVolume(double value) {
+    _volume = value.clamp(1.0, 5.0);
+    _player.setVolume(_volume);
+    notifyListeners();
+  }
+
   // Play next song
   Future<void> playNext() async {
     if (_playlist.isEmpty || _currentSong == null) return;
-
     final currentIndex = _playlist.indexOf(_currentSong!);
     final nextIndex = (currentIndex + 1) % _playlist.length;
     await playSong(_playlist[nextIndex]);
@@ -111,7 +143,6 @@ class AudioProvider extends ChangeNotifier {
   // Play previous song
   Future<void> playPrevious() async {
     if (_playlist.isEmpty || _currentSong == null) return;
-
     final currentIndex = _playlist.indexOf(_currentSong!);
     final prevIndex = (currentIndex - 1 + _playlist.length) % _playlist.length;
     await playSong(_playlist[prevIndex]);

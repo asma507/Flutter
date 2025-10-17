@@ -1,68 +1,60 @@
-final String lyrics = '''
-Tu paas hai, mere paas hai aise
-Mera koi ehsaas hai jaise
-Tu paas hai, mere paas hai aise
-Mera koi ehsaas hai jaise
+[ti:Saiyaara]
+[ar:Faheem Abdullah]
+[al:Saiyaara OST]
 
-[Chorus]
-Haaye, main mar hee jaaun jo tujhko na paaun
-Baaton mein teri main raatein bitaun
-Hothon pe lamha-lamha hai naam tera, haaye
-Tujhko hee gaaun main, tujhko pukaarun
+[00:00.00] 
+[00:04.00] 
+[00:08.00] 
+[00:12.00] 
+[00:16.00] 
+[00:20.00] 
+[00:24.00] Tu paas hai, mere paas hai aise
+[00:28.00] Mera koi ehsaas hai jaise
+[00:32.00] Tu paas hai, mere paas hai aise
+[00:36.00] Mera koi ehsaas hai jaise
 
-[Post-Chorus]
-Saiyaara, tu to badla nahi hai
-Mausam zara sa rootha hua hai
-Saiyaara, tu to badla nahi hai
-Mausam zara sa rootha hua hai (Hai)
+[00:40.50] Haaye, main mar hee jaaun jo tujhko na paaun
+[00:45.50] Baaton mein teri main raatein bitaun
+[00:50.50] Hothon pe lamha-lamha hai naam tera, haaye
+[00:55.50] Tujhko hee gaaun main, tujhko pukaarun
 
-[Verse]
-Beete lamhon se duniya basa loon
-Main to tere aansuon ka bana hoon
-Meri hasi mein teri sadayein
-Teri kahani khud ko sunau
-Yaadon ke taare—
-Yaadon ke taare tootenge kaise
-Mere hai jo wo roothenge kaise
-Beete dinon ki kholi kitabein
-Guzrе palon ko kaise bhuladein
-See upcoming pop shows
-Get tickets for your favorite artists
+[01:00.50] Saiyaara, tu to badla nahi hai
+[01:04.50] Mausam zara sa rootha hua hai
+[01:08.50] Saiyaara, tu to badla nahi hai
+[01:12.50] Mausam zara sa rootha hua hai
 
-You might also like
-Shreya Ghoshal - Saiyaara Reprise - Female (Romanized)
-Genius Romanizations
-Jubin Nautiyal - Barbaad (Romanized)
-Genius Romanizations
-Arijit Singh - Dhun (Romanized)
-Genius Romanizations
+[01:16.50] Beete lamhon se duniya basa loon
+[01:20.50] Main to tere aansuon ka bana hoon
+[01:24.50] Meri hasi mein teri sadayein
+[01:28.50] Teri kahani khud ko sunau
+[01:32.50] Yaadon ke taare
+[01:36.50] Yaadon ke taare tootenge kaise
+[01:40.50] Mere hai jo wo roothenge kaise
+[01:44.50] Beete dinon ki kholi kitabein
+[01:48.50] Guzre palon ko kaise bhuladein
 
-[Chorus]
-Haaye, main mar hee jaaun jo tujhko na paaun
-Baaton mеin teri main raatein bitaun
-Hothon pe lamha-lamha hai naam tera, haaye
-Tujhko hee gaaun main, tujhko pukaarun
+[01:52.50] Haaye, main mar hee jaaun jo tujhko na paaun
+[01:57.50] Baaton mein teri main raatein bitaun
+[02:02.50] Hothon pe lamha-lamha hai naam tera, haaye
+[02:07.50] Tujhko hee gaaun main, tujhko pukaarun
 
-[Post-Chorus]
-Saiyaara, tu to badla nahi hai
-Mausam zara sa rootha hua hai
-Saiyaara, tu to badla nahi hai
-Mausam zara sa rootha hua hai
+[02:12.50] Saiyaara, tu to badla nahi hai
+[02:16.50] Mausam zara sa rootha hua hai
+[02:20.50] Saiyaara, tu to badla nahi hai
+[02:24.50] Mausam zara sa rootha hua hai
 
-[Bridge]
-Jis roz hum-tum phirse milenge
-Ye saari baatein tujhse kahenge
-Duniya mein chahe ban jaaye jo bhi
-Tere bina to kuch na rahenge
+[02:28.50] Jis roz hum-tum phirse milenge
+[02:32.50] Ye saari baatein tujhse kahenge
+[02:36.50] Duniya mein chahe ban jaaye jo bhi
+[02:40.50] Tere bina to kuch na rahenge
 
-[Chorus]
-Haaye, main mar hee jaaun
-Jo tujhko na paaun
-Jo tujhko na paaun
-Main mar hee jaaun
-Hothon pe lamha-lamha hai naam tera, haaye
-Tujhko hee gaaun main, tujhko pukaarun
+[02:44.50] Haaye, main mar hee jaaun
+[02:48.50] Jo tujhko na paaun
+[02:52.50] Jo tujhko na paaun
+[02:56.50] Main mar hee jaaun
+[03:00.50] Hothon pe lamha-lamha hai naam tera, haaye
+[03:04.50] Tujhko hee gaaun main, tujhko pukaarun
 
-
-[Instrumental Outro]
-''';
+[03:08.00] 
+[03:12.00] 
+[03:16.00] Instrumental Outro

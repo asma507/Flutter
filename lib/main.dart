@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:lyrics_viewer_app/providers/audio_provider.dart';
 import 'package:lyrics_viewer_app/screens/home_screen.dart';
 import 'package:audio_session/audio_session.dart';
+import 'package:just_audio_platform_interface/just_audio_platform_interface.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -2,37 +2,59 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:lyrics_viewer_app/providers/audio_provider.dart';
 
-class MiniPlayer extends StatelessWidget {
-  final VoidCallback? onClose; // callback for dismiss
+class MiniPlayer extends StatefulWidget {
+  const MiniPlayer({super.key});
 
-  const MiniPlayer({super.key, this.onClose});
+  @override
+  State<MiniPlayer> createState() => _MiniPlayerState();
+}
+
+class _MiniPlayerState extends State<MiniPlayer> {
+  bool _isVisible = true; // controls visibility
 
   @override
   Widget build(BuildContext context) {
     final audioProv = Provider.of<AudioProvider>(context);
     final song = audioProv.currentSong;
 
-    if (song == null) {
-      return const SizedBox.shrink(); // nothing playing
+    // If no song or user hid the mini player → return nothing
+    if (song == null || !_isVisible) {
+      return const SizedBox.shrink();
     }
 
     return Container(
-      color: Colors.black,
+      color: const Color.fromARGB(255, 63, 62, 64),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Row(
         children: [
-          Image.network(
-            song.imagePath,
-            height: 40,
-            width: 40,
-            fit: BoxFit.cover,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: Image.asset(
+              song.imagePath,
+              height: 45,
+              width: 45,
+              fit: BoxFit.cover,
+            ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 10),
           Expanded(
-            child: Text(
-              '${song.title} - ${song.artist}',
-              style: const TextStyle(color: Colors.white),
-              overflow: TextOverflow.ellipsis,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  song.title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  song.artist,
+                  style: const TextStyle(color: Colors.white70, fontSize: 12),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           IconButton(
@@ -44,7 +66,12 @@ class MiniPlayer extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(Icons.close, color: Colors.white),
-            onPressed: onClose, // call callback instead of stop
+            onPressed: () {
+              audioProv.stop(); // stop song
+              setState(() {
+                _isVisible = false; // hide mini player
+              });
+            },
           ),
         ],
       ),

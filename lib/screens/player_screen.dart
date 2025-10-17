@@ -10,8 +10,7 @@ class PlayerScreen extends StatefulWidget {
   final Song song;
   final List<Song> playlist;
 
-  const PlayerScreen({Key? key, required this.song, required this.playlist})
-      : super(key: key);
+  const PlayerScreen({super.key, required this.song, required this.playlist});
 
   @override
   State<PlayerScreen> createState() => _PlayerScreenState();
@@ -56,7 +55,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.song.title),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: const Color.fromARGB(255, 121, 82, 188),
       ),
       body: Column(
         children: [
@@ -64,7 +63,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
           // Album Art
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Image.network(
+            child: Image.asset(
               widget.song.imagePath,
               height: 250,
               width: 250,
